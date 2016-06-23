@@ -1,5 +1,5 @@
 /* 
- * Leaflet TimeDimension v1.0.3 - 2016-03-29 
+ * Leaflet TimeDimension v1.0.3 - 2016-06-22 
  * 
  * Copyright 2016 Biel Frontera (ICTS SOCIB) 
  * datacenter@socib.es 
@@ -392,10 +392,7 @@ L.timeDimension = function (options) {
 
 L.TimeDimension.Util = {
     getTimeDuration: function(ISODuration) {
-        if (nezasa === undefined) {
-            throw "iso8601-js-period library is required for Leatlet.TimeDimension: https://github.com/nezasa/iso8601-js-period";
-        }
-        return nezasa.iso8601.Period.parse(ISODuration, true);
+        return moment.duration(ISODuration);
     },
 
     addTimeDuration: function(date, duration, utc) {
@@ -405,32 +402,16 @@ L.TimeDimension.Util = {
         if (typeof duration == 'string' || duration instanceof String) {
             duration = this.getTimeDuration(duration);
         }
-        var l = duration.length;
         var get = utc ? "getUTC" : "get";
         var set = utc ? "setUTC" : "set";
 
-        if (l > 0 && duration[0] != 0) {
-            date[set + "FullYear"](date[get + "FullYear"]() + duration[0]);
-        }
-        if (l > 1 && duration[1] != 0) {
-            date[set + "Month"](date[get + "Month"]() + duration[1]);
-        }
-        if (l > 2 && duration[2] != 0) {
-            // weeks
-            date[set + "Date"](date[get + "Date"]() + (duration[2] * 7));
-        }
-        if (l > 3 && duration[3] != 0) {
-            date[set + "Date"](date[get + "Date"]() + duration[3]);
-        }
-        if (l > 4 && duration[4] != 0) {
-            date[set + "Hours"](date[get + "Hours"]() + duration[4]);
-        }
-        if (l > 5 && duration[5] != 0) {
-            date[set + "Minutes"](date[get + "Minutes"]() + duration[5]);
-        }
-        if (l > 6 && duration[6] != 0) {
-            date[set + "Seconds"](date[get + "Seconds"]() + duration[6]);
-        }
+        date[set + "FullYear"](date[get + "FullYear"]() + duration.years);
+        date[set + "Month"](date[get + "Month"]() + duration.months);
+        date[set + "Date"](date[get + "Date"]() + duration.days);
+        date[set + "Hours"](date[get + "Hours"]() + duration.hours);
+        date[set + "Minutes"](date[get + "Minutes"]() + duration.minutes);
+        date[set + "Seconds"](date[get + "Seconds"]() + duration.seconds);
+
     },
 
     subtractTimeDuration: function(date, duration, utc) {
