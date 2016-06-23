@@ -1,5 +1,5 @@
 /* 
- * Leaflet TimeDimension v1.0.3 - 2016-06-22 
+ * Leaflet TimeDimension v1.0.3 - 2016-06-23 
  * 
  * Copyright 2016 Biel Frontera (ICTS SOCIB) 
  * datacenter@socib.es 
@@ -14,13 +14,13 @@
  * git://github.com/socib/Leaflet.TimeDimension.git 
  * 
  */
-(function($){/*jshint indent: 4, browser:true*/
-/*global L*/
+/*jshint indent: 4, browser:true*/
 /*
  * L.TimeDimension: TimeDimension object manages the time component of a layer.
  * It can be shared among different layers and it can be added to a map, and become
  * the default timedimension component for any layer added to the map.
  */
+var L = require('leaflet');
 
 L.TimeDimension = (L.Layer || L.Class).extend({
 
@@ -386,7 +386,7 @@ L.timeDimension = function (options) {
     return new L.TimeDimension(options);
 };
 
-/*
+var moment = require('moment');/*
  * L.TimeDimension.Util
  */
 
@@ -694,6 +694,7 @@ L.timeDimension.layer = function(layer, options) {
 /*
  * L.TimeDimension.Layer.WMS: wms Layer associated to a TimeDimension
  */
+var $ = require('jquery');
 
 L.TimeDimension.Layer.WMS = L.TimeDimension.Layer.extend({
 
@@ -2157,4 +2158,3 @@ L.Map.addInitHook(function() {
 L.control.timeDimension = function(options) {
     return new L.Control.TimeDimension(options);
 };
-})(jQuery);

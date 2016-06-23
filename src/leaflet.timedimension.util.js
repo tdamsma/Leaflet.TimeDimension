@@ -1,6 +1,7 @@
 /*
  * L.TimeDimension.Util
  */
+var moment = require('moment');
 
 L.TimeDimension.Util = {
     getTimeDuration: function(ISODuration) {

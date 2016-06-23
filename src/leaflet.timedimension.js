@@ -1,10 +1,10 @@
 /*jshint indent: 4, browser:true*/
-/*global L*/
 /*
  * L.TimeDimension: TimeDimension object manages the time component of a layer.
  * It can be shared among different layers and it can be added to a map, and become
  * the default timedimension component for any layer added to the map.
  */
+var L = require('leaflet');
 
 L.TimeDimension = (L.Layer || L.Class).extend({
 

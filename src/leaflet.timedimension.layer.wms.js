@@ -1,6 +1,7 @@
 /*
  * L.TimeDimension.Layer.WMS: wms Layer associated to a TimeDimension
  */
+var $ = require('jquery');
 
 L.TimeDimension.Layer.WMS = L.TimeDimension.Layer.extend({
 
