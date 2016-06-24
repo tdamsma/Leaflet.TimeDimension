@@ -18,12 +18,12 @@ L.TimeDimension.Util = {
         var get = utc ? "getUTC" : "get";
         var set = utc ? "setUTC" : "set";
 
-        date[set + "FullYear"](date[get + "FullYear"]() + duration.years);
-        date[set + "Month"](date[get + "Month"]() + duration.months);
-        date[set + "Date"](date[get + "Date"]() + duration.days);
-        date[set + "Hours"](date[get + "Hours"]() + duration.hours);
-        date[set + "Minutes"](date[get + "Minutes"]() + duration.minutes);
-        date[set + "Seconds"](date[get + "Seconds"]() + duration.seconds);
+        date[set + "FullYear"](date[get + "FullYear"]() + duration.years());
+        date[set + "Month"](date[get + "Month"]() + duration.months());
+        date[set + "Date"](date[get + "Date"]() + duration.days());
+        date[set + "Hours"](date[get + "Hours"]() + duration.hours());
+        date[set + "Minutes"](date[get + "Minutes"]() + duration.minutes());
+        date[set + "Seconds"](date[get + "Seconds"]() + duration.seconds());
 
     },
 

@@ -1,5 +1,5 @@
 /* 
- * Leaflet TimeDimension v1.0.3 - 2016-06-23 
+ * Leaflet TimeDimension v1.0.3 - 2016-06-24 
  * 
  * Copyright 2016 Biel Frontera (ICTS SOCIB) 
  * datacenter@socib.es 
@@ -386,9 +386,10 @@ L.timeDimension = function (options) {
     return new L.TimeDimension(options);
 };
 
-var moment = require('moment');/*
+/*
  * L.TimeDimension.Util
  */
+var moment = require('moment');
 
 L.TimeDimension.Util = {
     getTimeDuration: function(ISODuration) {
@@ -405,12 +406,12 @@ L.TimeDimension.Util = {
         var get = utc ? "getUTC" : "get";
         var set = utc ? "setUTC" : "set";
 
-        date[set + "FullYear"](date[get + "FullYear"]() + duration.years);
-        date[set + "Month"](date[get + "Month"]() + duration.months);
-        date[set + "Date"](date[get + "Date"]() + duration.days);
-        date[set + "Hours"](date[get + "Hours"]() + duration.hours);
-        date[set + "Minutes"](date[get + "Minutes"]() + duration.minutes);
-        date[set + "Seconds"](date[get + "Seconds"]() + duration.seconds);
+        date[set + "FullYear"](date[get + "FullYear"]() + duration.years());
+        date[set + "Month"](date[get + "Month"]() + duration.months());
+        date[set + "Date"](date[get + "Date"]() + duration.days());
+        date[set + "Hours"](date[get + "Hours"]() + duration.hours());
+        date[set + "Minutes"](date[get + "Minutes"]() + duration.minutes());
+        date[set + "Seconds"](date[get + "Seconds"]() + duration.seconds());
 
     },
 
