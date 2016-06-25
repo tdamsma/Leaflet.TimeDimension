@@ -1,5 +1,5 @@
 /* 
- * Leaflet TimeDimension v1.0.3 - 2016-06-24 
+ * Leaflet TimeDimension v1.0.4 - 2016-06-24 
  * 
  * Copyright 2016 Biel Frontera (ICTS SOCIB) 
  * datacenter@socib.es 
@@ -1661,6 +1661,7 @@ L.Control.TimeDimension = L.Control.extend({
         loopButton: false,
         displayDate: true,
         timeSlider: true,
+        timeSliderDragUpdate: false,
         limitSliders: false,
         limitMinimumRange: 5,
         speedSlider: true,
@@ -1754,7 +1755,7 @@ L.Control.TimeDimension = L.Control.extend({
                 this._player = new L.TimeDimension.Player(this.options.playerOptions, this._timeDimension);
             }
         }
-        if (this.options.autoPlay && this._buttonPlayPause) {
+        if (this.options.autoPlay) {
             this._player.start(this._steps);
         }
         this._player.on('play stop running loopchange speedchange', this._onPlayerStateChange, this);
@@ -1918,6 +1919,9 @@ L.Control.TimeDimension = L.Control.extend({
             if (time) {
                 var date = new Date(time);
                 this._displayDate.innerHTML = this._getDisplayDateFormat(date);
+                if (this.options.timeSliderDragUpdate){
+                    this._sliderTimeValueChanged(e.target.getValue());                    
+                }
             }
         }, this);
 
